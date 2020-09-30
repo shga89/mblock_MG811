@@ -1,0 +1,77 @@
+{	"extensionName": "MG811 이산화탄소 센서",
+	"description": "MG811에 대한 엠블럭 확장 블럭입니다. 이 확장 블럭은 GPL 3.0을 따릅니다.",
+	"version": "0.1",
+	"author": "Gaduino",
+	"homepage": "http://www.github.com/shga89",
+	"sort":0,
+	"javascriptURL":"js/MG811.js",
+    "firmware":"1.0",
+    "extensionPort":0,
+	"blockSpecs": [
+		[
+			"w",
+			"Initialize CO2 Sensor(MG811) connected in Pin= %d.analog_pin , 400ppm= %s , 40000ppm= %s",
+			"MG811Init",
+			"",
+			"",
+			"",
+			{
+				"setup":"
+\/******** MG811 Setup *********\/
+Sensor_MG811.begin({1}, {2});
+\/******************************\/\n",
+				"inc":"#include \"MG811.h\"\n",
+				"def":" 
+\/******** MG811 Define ********\/
+MG811 Sensor_MG811 = MG811({0});
+\/******************************\/\n",
+				"work":"",
+				"loop":""
+			}
+		],
+		[
+			"r",
+			"Read Concentration(ppm) from CO2 Sensor(MG811)",
+			"MG811getCO2",
+			"",
+			{
+				"setup":"",
+				"inc":"",
+				"def":"",
+				"work":"Sensor_MG811.read()",
+				"loop":""
+			}
+		],
+		[
+			"r",
+			"Raw data from CO2 Sensor(MG811)",
+			"MG811getRaw",
+			"",
+			{
+				"setup":"",
+				"inc":"",
+				"def":"",
+				"work":"Sensor_MG811.raw()",
+				"loop":""
+			}
+		]
+	],
+	"menus": {
+		"analog_pin":["A0", "A1", "A2", "A3", "A4", "A5"],
+	},
+	"values": {
+		"A0": 0,
+		"A1": 1,
+		"A2": 2,
+		"A3": 3,
+		"A4": 4,
+		"A5": 5
+	},
+	"translators":{
+		"ko":{
+			"Initialize CO2 Sensor(MG811) connected in Pin= %d.analog_pin , 400ppm= %s , 40000ppm= %s":"CO2 센서(MG811) 초기화: PIN= %d.analog_pin , 400ppm= %s , 40000ppm= %s",
+			"Read Concentration(ppm) from CO2 Sensor(MG811)":"CO2 센서(MG811)에서 농도값(ppm) 읽기",
+			"Raw data from CO2 Sensor(MG811)":"CO2 센서(MG811)에서 원본값 읽기"
+		}		
+	}
+}
